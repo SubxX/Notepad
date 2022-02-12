@@ -1,0 +1,105 @@
+.normal-card {
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 2px 0px 21px 0px rgba(0, 0, 0, 0.089);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .card-header,
+  .card-description {
+    padding: 20px 20px 0 20px;
+  }
+  .card-description {
+    flex-grow: 1;
+  }
+
+  audio {
+    margin-top: 15px;
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    h4 {
+      font-size: 22px;
+    }
+    span {
+      font-size: 12px;
+      display: block;
+      color: rgb(158, 158, 158);
+    }
+    i {
+      font-size: inherit;
+      vertical-align: middle;
+    }
+    button {
+      display: block;
+      cursor: pointer;
+      color: rgba(theme.$purple, 0.5);
+      font-size: 24px;
+      margin: 10px 0 0 10px;
+      &.note-pinned {
+        color: theme.$purple;
+        transform: rotate(45deg);
+      }
+    }
+  }
+
+  .card-tags {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .card-footer {
+    padding: 20px 20px 15px 20px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+  .delete-note {
+    width: 30px;
+    height: 30px;
+    transition: 0.25s ease;
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.25s ease;
+    span {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      background: theme.$purple;
+      width: 100%;
+      display: block;
+      transition: height 0.1s linear;
+    }
+    i {
+      z-index: 1;
+      font-size: 16px;
+      transition: color 0.5s ease;
+    }
+    &.clicked {
+      box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.13);
+      i {
+        transform: scale(0.8);
+        color: #fff;
+      }
+    }
+  }
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: theme.$hover;
+  color: theme.$purple;
+  font-size: 14px;
+  border-radius: 50px;
+  padding: 5px 10px;
+  margin: 0 5px 5px 0;
+}

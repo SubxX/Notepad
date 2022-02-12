@@ -1,0 +1,36 @@
+<form class="add-note" [formGroup]="noteForm" (submit)="addNewNote($event)">
+    <div class="note-inputs">
+        <input type="text" placeholder="New note title" formControlName="title">
+
+        <div class="dropdown">
+            <input placeholder="tags like travel, hobby ..." [formControl]="tagsSearch" />
+
+            <div class="added-tags-holder">
+                <div class="tag" *ngFor="let tag of addedTags" (click)="removeTag(tag)">
+                    <span>{{tag}}</span>
+                    <button class="material-icons">close</button>
+                </div>
+            </div>
+
+            <div class="dropdown-items"
+                *ngIf="(tagService.tags | async) | tagFilter:(addedTags):(tagsSearch.value); let filteredTags">
+                <button *ngFor="let tag of filteredTags" (click)="addTag(tag.name)">{{tag.name}}</button>
+            </div>
+        </div>
+
+        <textarea placeholder="Enter note description" formControlName="description"></textarea>
+        <audio [src]="noteForm.controls['attachment'].value" controls
+            *ngIf="noteForm.controls['attachment'].value"></audio>
+    </div>
+    <div class="note-actions">
+        <div>
+            <button class="avatar mic-recording" [class.recording]="isRecording | async" type="button"
+                (pointerdown)="startRecording()" (pointerup)="stopRecording()">
+                <i class="material-icons">mic</i>
+            </button>
+            <button class="add-note-btn" type="submit">
+                ADD
+            </button>
+        </div>
+    </div>
+</form>

@@ -1,11 +1,32 @@
 *,
 *::after,
 *::before {
-  content: "";
   box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
 html {
   font-family: "Poppins", sans-serif;
+  background: #f8fafb;
+}
+button {
+  background: none;
+  border: none;
+  font-size: inherit;
+  &:focus {
+    outline: none;
+  }
+}
+
+input,
+textarea,
+select {
+  font-family: inherit;
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  &:focus {
+    outline: none;
+  }
 }

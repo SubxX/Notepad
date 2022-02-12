@@ -1,0 +1,26 @@
+<div class="normal-card">
+    <div class="card-header">
+        <div>
+            <h4>{{note.title}}</h4>
+            <span>
+                {{note.date |date:'d MMMM, y'}}
+            </span>
+        </div>
+        <button [class.note-pinned]="note.pinned" (click)="pinNoteEmitter()" *ngIf="note.status===1">
+            <i class="material-icons">push_pin</i>
+        </button>
+    </div>
+
+    <div class="card-description">
+        <p>{{note.description}}</p>
+        <audio *ngIf="note.attachment" controls [src]="note.attachment"></audio>
+    </div>
+
+    <div class="card-footer">
+        <div class="card-tags">
+            <span *ngFor="let tag of note.tags" class="tag">{{tag}}</span>
+        </div>
+        <app-note-delete-button *ngIf="note.status===1" (onDone)="removeNoteEmitter()">
+        </app-note-delete-button>
+    </div>
+</div>

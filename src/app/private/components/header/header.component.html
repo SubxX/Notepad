@@ -1,0 +1,26 @@
+<header>
+    <div class="logo">
+        <button (click)="toggleSidebar()">
+            <i class="material-icons">{{(sidebarService.sidebarOpened |async) ? 'menu' : 'menu_open'}}</i>
+        </button>
+        <h2>NotePad-<span>X</span></h2>
+    </div>
+
+    <div class="header-actions">
+        <ng-container *ngIf="sidebarService.searchbar | async else searchBtnHandler">
+            <app-header-searchbar></app-header-searchbar>
+            <ng-container [ngTemplateOutlet]="searchBtnHandler"
+                [ngTemplateOutletContext]="{icon:'close',label:'close searchabr'}">
+            </ng-container>
+        </ng-container>
+
+        <div class="avatar">SB</div>
+    </div>
+
+</header>
+
+<ng-template #searchBtnHandler let-icon="icon" let-label="label">
+    <button class="avatar" (click)="sidebarService.toggleSearchbar()" [attr.aria-label]="label ||'open searchbar'">
+        <i class="material-icons">{{icon || 'search'}}</i>
+    </button>
+</ng-template>

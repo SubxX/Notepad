@@ -1,0 +1,31 @@
+.app-wrapper {
+  display: flex;
+  padding-top: 70px;
+  padding-left: 60px;
+  .outlet-holder {
+    flex-grow: 1;
+    padding: 10px;
+  }
+  @media (min-width: 1280px) {
+    padding-left: 0;
+  }
+}
+
+.container {
+  max-width: 1000px;
+  margin: auto;
+  @media (min-width: 1500px) {
+    max-width: 1200px;
+  }
+}
+
+.grid {
+  display: grid;
+  gap: 10px;
+  @media (min-width: 700px) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (min-width: 1024px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}

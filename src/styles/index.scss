@@ -1,2 +1,8 @@
 @use "./partials/reset";
-@use "./partials/colors";
+@use "./partials/colors" as theme;
+@import "./partials/common";
+@import "./components/sidebar.scss";
+@import "./components/header.scss";
+@import "./components/notecard.scss";
+@import "./components/addnote.scss";
+@import "./components//audiowave.scss";

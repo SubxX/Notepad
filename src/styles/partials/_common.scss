@@ -1,0 +1,63 @@
+.avatar {
+  border-radius: 50px;
+  width: 40px;
+  height: 40px;
+  background: theme.$hover;
+  color: theme.$purple;
+  font-weight: 600;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  flex: none;
+  &:hover .tooltip {
+    top: 52px;
+    opacity: 1;
+  }
+  .tooltip {
+    position: absolute;
+    padding: 8px 10px;
+    border-radius: 5px;
+    top: 45px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: theme.$purple;
+    color: #fff;
+    display: block;
+    z-index: 8;
+    box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.15);
+    font-size: 12px;
+    font-weight: 600;
+    pointer-events: none;
+    transition: opacity 0.25s ease, top 0.25s ease;
+    opacity: 0;
+    white-space: nowrap;
+
+    &::before {
+      content: " ";
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      margin-left: -6px;
+      border-width: 6px;
+      border-style: solid;
+      border-color: transparent transparent theme.$purple transparent;
+    }
+  }
+}
+
+.no-result {
+  background: #cfe2ff;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 10px;
+  color: theme.$purple;
+  i {
+    color: inherit;
+    margin-right: 10px;
+    font-size: 30px;
+  }
+}

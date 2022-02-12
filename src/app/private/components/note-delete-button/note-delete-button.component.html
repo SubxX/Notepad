@@ -1,0 +1,4 @@
+<button class="delete-note avatar" [class.clicked]="(progress |async)">
+    <i class="material-icons">delete</i>
+    <span [ngStyle]="{'height':(progress |async)+'%'}"></span>
+</button>

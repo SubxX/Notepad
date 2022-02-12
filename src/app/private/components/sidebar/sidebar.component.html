@@ -1,0 +1,67 @@
+<div class="sidebar-wrapper" [class.min]="sidebarState | async">
+    <div class="sidebar-inner">
+
+        <div>
+            <ul>
+                <li>
+                    <a class="sidebar-item" [routerLink]="['/']" [routerLinkActiveOptions]="{exact: true}"
+                        routerLinkActive="active-route">
+                        <i class="material-icons">text_snippet</i>
+                        <span>All Notes</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="sidebar-item" [routerLink]="['/']" [queryParams]="{type:'pinned'}"
+                        routerLinkActive="active-route">
+                        <i class="material-icons">push_pin</i>
+                        <span>Pinned</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div>
+            <p>TAGS</p>
+            <ul>
+                <li *ngFor="let tag of tagService.tags |async">
+                    <a class="sidebar-item tags" [routerLink]="['/']" [queryParams]="{type:tag.name}"
+                        routerLinkActive="active-route">
+                        <i class="material-icons">tag</i>
+                        <span>{{tag.name}}</span>
+                    </a>
+                </li>
+                <li>
+                    <button class="sidebar-item tags" *ngIf="!(addTag |async) else addTagForm" (click)="openAddTag()">
+                        <i class="material-icons">add</i>
+                        <span>New Tag</span>
+                    </button>
+                </li>
+
+            </ul>
+        </div>
+
+        <div>
+            <a class="sidebar-item" [routerLink]="['/']" [queryParams]="{type:'archive'}"
+                routerLinkActive="active-route">
+                <i class="material-icons">delete</i>
+                <span>Archive</span>
+            </a>
+        </div>
+
+    </div>
+</div>
+
+<ng-template #addTagForm>
+    <form class="sidebar-item tags add-tag" (submit)="addNote($event)">
+        <i class="material-icons">tag</i>
+        <input type="text" placeholder="Enter Tag" [formControl]="name" autofocus>
+        <div class="add-tag-actions">
+            <button type="submit">
+                <i class="material-icons">done</i>
+            </button>
+            <button role="button" type="button" (click)="closeAddTag()">
+                <i class="material-icons">close</i>
+            </button>
+        </div>
+    </form>
+</ng-template>

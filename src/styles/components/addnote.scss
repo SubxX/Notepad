@@ -1,0 +1,105 @@
+.add-note {
+  box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.055);
+  border-radius: 10px;
+  padding: 20px;
+  background: #fff;
+  margin-bottom: 10px;
+  audio {
+    display: block;
+  }
+  textarea {
+    resize: none;
+    height: 70px;
+  }
+  .note-actions {
+    justify-content: flex-end;
+  }
+  .note-actions,
+  .note-actions > div {
+    display: flex;
+  }
+  .note-actions > div > * + * {
+    margin-left: 10px;
+  }
+  .add-note-btn {
+    background: theme.$hover;
+    color: theme.$purple;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .added-tags-holder {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+}
+
+.mic-recording {
+  i {
+    transition: 0.25s ease;
+  }
+  &.recording i {
+    transform: scale(0.7);
+  }
+  &.recording::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50px;
+    border: 2px solid theme.$purple;
+    border-top-color: transparent;
+    animation: spinnAnimation 1.5s linear infinite;
+  }
+  @keyframes spinnAnimation {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+.dropdown {
+  position: relative;
+  .dropdown-items {
+    z-index: 1;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+    background: #fff;
+    button {
+      display: block;
+      padding: 10px 15px;
+      font-size: 14px;
+      cursor: pointer;
+      width: 100%;
+      text-align: left;
+      &:hover,
+      &:focus {
+        background: theme.$hover;
+      }
+    }
+  }
+  .tag {
+    padding-right: 5px;
+  }
+  .tag button {
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: 10px;
+    background: theme.$purple;
+    color: #fff;
+    border-radius: 50%;
+    padding: 3px;
+  }
+}

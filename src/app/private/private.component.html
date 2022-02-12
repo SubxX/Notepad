@@ -1,1 +1,26 @@
-<p>private works!</p>
+<app-header></app-header>
+
+<div class="app-wrapper">
+    <app-sidebar></app-sidebar>
+    <div class="outlet-holder">
+
+        <div class="container">
+            <app-add-note></app-add-note>
+
+            <ng-container *ngIf="(noteService.notes | async) | noteFilter:(filterBy | async);let filteredNotes">
+
+                <div class="no-result" *ngIf="filteredNotes.length===0">
+                    <i class="material-icons">info</i>
+                    <span>No notes found!</span>
+                </div>
+
+                <div class="grid">
+                    <app-note-card *ngFor="let note of filteredNotes" [note]="note"
+                        (pinNote)="noteService.togglePin(note.id)" (removeNote)="noteService.removeNote(note.id)">
+                    </app-note-card>
+                </div>
+            </ng-container>
+
+        </div>
+    </div>
+</div>
