@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AudioRecorder } from '../../utils/audio-recorder.utils';
 import { FormBuilder } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -39,18 +39,28 @@ export class AddNoteComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // Form related functions
+  get controls(): { [key: string]: AbstractControl } {
+    return this.noteForm.controls
+  }
+
+  resetForm() {
+    this.noteForm.reset()
+    this.noteForm.updateValueAndValidity()
+  }
+
   // Tags hanlders
   get addedTags(): string[] {
-    return this.noteForm.controls['tags'].value
+    return this.controls['tags'].value
   }
 
   addTag(tagName: string): void {
     this.tagsSearch.reset()
-    this.noteForm.controls['tags'].setValue([...this.addedTags, tagName])
+    this.controls['tags'].setValue([...this.addedTags, tagName])
   }
 
   removeTag(tagName: string): void {
-    this.noteForm.controls['tags'].setValue(this.addedTags.filter(tag => tag !== tagName))
+    this.controls['tags'].setValue(this.addedTags.filter(tag => tag !== tagName))
   }
 
   // Audio Recording handlers
@@ -69,9 +79,18 @@ export class AddNoteComponent implements OnInit {
   }
 
   // Add new note
+  displayInvalidFields() {
+    for (let key in this.controls) {
+      if (this.controls[key].invalid) this.controls[key].markAsDirty()
+    }
+  }
+
   addNewNote(e: any) {
     e.preventDefault()
-    if (this.noteForm.invalid) return
+    if (this.noteForm.invalid) {
+      this.displayInvalidFields()
+      return
+    }
     this.noteService.addNote(this.noteForm.value)
     this.noteForm.reset()
     this.router.navigate(['/'])
