@@ -43,6 +43,7 @@ header {
   .search-input {
     border: 1px solid rgba(theme.$purple, 0.15);
     border-radius: 5px;
+    padding: 10px;
   }
 
   @media (max-width: 650px) {

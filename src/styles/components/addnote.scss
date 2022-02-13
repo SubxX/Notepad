@@ -6,12 +6,15 @@
   margin-bottom: 10px;
   audio {
     display: block;
+    margin-top: 10px;
+    width: 100%;
   }
   textarea {
     resize: none;
-    height: 70px;
+    height: 60px;
   }
   .note-actions {
+    margin-top: 10px;
     justify-content: flex-end;
   }
   .note-actions,

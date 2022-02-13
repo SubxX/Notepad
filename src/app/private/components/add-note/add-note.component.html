@@ -1,6 +1,9 @@
 <form class="add-note" [formGroup]="noteForm" (submit)="addNewNote($event)">
     <div class="note-inputs">
-        <input type="text" placeholder="New note title" formControlName="title">
+        <div class="input-holder">
+            <input class="io" type="text" placeholder="New note title *" formControlName="title">
+            <i class="material-icons" *ngIf="controls['title'].dirty && controls['title'].invalid">report</i>
+        </div>
 
         <div class="dropdown">
             <input placeholder="tags like travel, hobby ..." [formControl]="tagsSearch" />
@@ -18,15 +21,22 @@
             </div>
         </div>
 
-        <textarea placeholder="Enter note description" formControlName="description"></textarea>
-        <audio [src]="noteForm.controls['attachment'].value" controls
-            *ngIf="noteForm.controls['attachment'].value"></audio>
+        <div class="input-holder">
+            <textarea class="io" placeholder="Enter note description *" formControlName="description"></textarea>
+            <i class="material-icons"
+                *ngIf="controls['description'].dirty && controls['description'].invalid">report</i>
+        </div>
+
+        <audio [src]="controls['attachment'].value" controls *ngIf="controls['attachment'].value"></audio>
     </div>
     <div class="note-actions">
         <div>
             <button class="avatar mic-recording" [class.recording]="isRecording | async" type="button"
                 (pointerdown)="startRecording()" (pointerup)="stopRecording()">
                 <i class="material-icons">mic</i>
+            </button>
+            <button class="add-note-btn" type="button" *ngIf="noteForm.dirty" (click)="resetForm()">
+                RESET
             </button>
             <button class="add-note-btn" type="submit">
                 ADD

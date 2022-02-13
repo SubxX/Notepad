@@ -61,3 +61,24 @@
     font-size: 30px;
   }
 }
+
+.input-holder {
+  position: relative;
+  .io {
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.25s ease;
+  }
+  .io.ng-dirty.ng-invalid {
+    color: red;
+    border-bottom-color: rgba(red, 0.5);
+    &::placeholder {
+      color: red;
+    }
+  }
+  i {
+    position: absolute;
+    top: 8px;
+    right: 0;
+    color: red;
+  }
+}
